@@ -52,13 +52,16 @@ Rectangle {
     smooth: true
 
     gradient: Gradient {
+        id: gradient
         GradientStop {
+            id: gradientTop
             position: 0.0
-            color: !mouseArea.pressed ? activePalette.light : activePalette.button
+            color: activePalette.light
         }
         GradientStop {
+            id: gradientBottom
             position: 1.0
-            color: !mouseArea.pressed ? activePalette.button : activePalette.dark
+            color: activePalette.button
         }
     }
 
@@ -68,7 +71,36 @@ Rectangle {
         id: mouseArea
         anchors.fill: parent
         onClicked: container.clicked()
+        hoverEnabled: true
     }
+
+    states: [
+        State {
+            name: "clicked"
+            when: mouseArea.pressed
+            PropertyChanges { target: gradientTop; color: activePalette.button }
+            PropertyChanges { target: gradientBottom; color: activePalette.dark }
+        },
+        State {
+            name: "hovered"
+            when: mouseArea.containsMouse
+            PropertyChanges { target: gradientTop; color: activePalette.mid }
+            PropertyChanges { target: gradientBottom; color: activePalette.midlight }
+        }
+    ]
+
+    transitions: [
+        Transition {
+            to: "hovered"
+            ColorAnimation { target: gradientTop; duration: 100 }
+            ColorAnimation { target: gradientBottom; duration: 100 }
+        },
+        Transition {
+            from: "hovered"
+            ColorAnimation { target: gradientTop; duration: 500 }
+            ColorAnimation { target: gradientBottom; duration: 500 }
+        }
+    ]
 
     Text {
         id: text

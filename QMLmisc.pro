@@ -1,5 +1,5 @@
 # Add more folders to ship with the application, here
-folder_01.source = qml/QMLTest
+folder_01.source = qml/QMLmisc
 folder_01.target = qml
 DEPLOYMENTFOLDERS = folder_01
 
@@ -29,3 +29,6 @@ qtcAddDeployment()
 
 HEADERS += \
     CursorArea.h
+
+OTHER_FILES += \
+    README.txt

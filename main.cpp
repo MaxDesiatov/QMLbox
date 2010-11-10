@@ -7,11 +7,11 @@ int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
 
-    qmlRegisterType<CursorArea>("CursorArea", 1, 0, "CursorArea");
+    qmlRegisterType<CursorArea>("CursorArea", 0, 1, "CursorArea");
 
     QmlApplicationViewer viewer;
     viewer.setOrientation(QmlApplicationViewer::Auto);
-    viewer.setMainQmlFile(QLatin1String("qml/QMLTest/main.qml"));
+    viewer.setMainQmlFile(QLatin1String("qml/QMLmisc/main.qml"));
     viewer.show();
 
     return app.exec();
