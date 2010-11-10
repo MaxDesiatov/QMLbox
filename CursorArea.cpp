@@ -13,6 +13,7 @@ int CursorArea::cursor() const {
 
 void CursorArea::setCursor(const int &cursor) {
     m_cursor.setShape((Qt::CursorShape) cursor);
+    emit cursorChanged();
 }
 
 void CursorArea::hoverEnterEvent (QGraphicsSceneHoverEvent * /*event*/) {
