@@ -1,10 +1,8 @@
 #include "CursorArea.h"
-#include <QApplication>
 
 CursorArea::CursorArea(QDeclarativeItem *parent) :
     QDeclarativeItem(parent)
 {
-    setAcceptHoverEvents(true);
 }
 
 int CursorArea::cursor() const {
@@ -13,13 +11,6 @@ int CursorArea::cursor() const {
 
 void CursorArea::setCursor(const int &cursor) {
     m_cursor.setShape((Qt::CursorShape) cursor);
+    QGraphicsItem::setCursor(m_cursor);
     emit cursorChanged();
-}
-
-void CursorArea::hoverEnterEvent (QGraphicsSceneHoverEvent * /*event*/) {
-    qApp->setOverrideCursor(m_cursor);
-}
-
-void CursorArea::hoverLeaveEvent(QGraphicsSceneHoverEvent * /*event*/) {
-    qApp->restoreOverrideCursor();
 }

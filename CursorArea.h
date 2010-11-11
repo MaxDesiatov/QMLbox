@@ -13,9 +13,6 @@ public:
     void setCursor(const int &cursor);
 signals:
     void cursorChanged();
-protected:
-    void hoverEnterEvent(QGraphicsSceneHoverEvent *event);
-    void hoverLeaveEvent(QGraphicsSceneHoverEvent *event);
 private:
     QCursor m_cursor;
 };
