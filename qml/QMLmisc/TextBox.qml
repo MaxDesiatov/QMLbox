@@ -3,6 +3,7 @@ import CursorArea 0.1
 
 Rectangle {
     property alias text: textInput.text
+    property alias validator: textInput.validator
 
     border.width: 1
 

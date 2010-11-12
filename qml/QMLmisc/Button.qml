@@ -43,6 +43,7 @@ import Qt 4.7
 Rectangle {
     id: container
 
+    property int pointSize: 10
     property variant text
     signal clicked
 
@@ -104,8 +105,8 @@ Rectangle {
 
     Text {
         id: text
-        anchors.centerIn:parent
-        font.pointSize: 10
+        anchors.centerIn: parent
+        font.pointSize: parent.pointSize
         text: parent.text
         color: activePalette.buttonText
     }
