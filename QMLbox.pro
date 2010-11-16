@@ -21,14 +21,16 @@ symbian:TARGET.UID3 = 0xE5652314
 
 # The .cpp file which was generated for your project. Feel free to hack it.
 SOURCES += main.cpp \
-    CursorArea.cpp
+    CursorArea.cpp \
+    WheelArea.cpp
 
 # Please do not modify the following two lines. Required for deployment.
 include(qmlapplicationviewer/qmlapplicationviewer.pri)
 qtcAddDeployment()
 
 HEADERS += \
-    CursorArea.h
+    CursorArea.h \
+    WheelArea.h
 
 OTHER_FILES += \
     README.txt

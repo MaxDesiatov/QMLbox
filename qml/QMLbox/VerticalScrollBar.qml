@@ -1,12 +1,13 @@
 import QtQuick 1.0
+import WheelArea 0.1
 
 Item {
     id: scrollBar
     width: 20
     property real position: 0
     property real filled: 1
-    property real step: 0.1
-    property real bigStep: 0.3
+    property real step: filled / 3
+    property real bigStep: filled
 
     Button {
         id: upArrow
@@ -120,5 +121,19 @@ Item {
         }
         onPressed: timerDown.start()
         onReleased: timerDown.stop()
+    }
+
+    WheelArea {
+        id: wheel
+        anchors.fill: parent
+        onVerticalWheel: {
+            var tmp = bar.y - delta * step
+            if (tmp > barMouseArea.drag.maximumY)
+                bar.y = barMouseArea.drag.maximumY
+            else if (tmp < barMouseArea.drag.minimumY)
+                bar.y = barMouseArea.drag.minimumY
+            else
+                bar.y = tmp
+        }
     }
 }
