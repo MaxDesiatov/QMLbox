@@ -1,4 +1,4 @@
-import Qt 4.7
+import QtQuick 1.0
 import CursorArea 0.1
 
 Rectangle {
@@ -22,7 +22,6 @@ Rectangle {
     }
 
     Rectangle {
-
         id: cursorRect
         color: "red"
         width:  150

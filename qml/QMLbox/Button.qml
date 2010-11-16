@@ -38,16 +38,22 @@
 **
 ****************************************************************************/
 
-import Qt 4.7
+import QtQuick 1.0
 
 Rectangle {
     id: container
 
     property int pointSize: 10
+    property real horizontalMargin: 20
+    property real verticalMargin: 10
     property variant text
     signal clicked
+    signal pressAndHold
+    signal pressed
+    signal released
 
-    height: text.height + 10; width: text.width + 20
+    height: text.height + verticalMargin
+    width: text.width + horizontalMargin
     border.width: 1
     radius: 4
     smooth: true
@@ -71,7 +77,10 @@ Rectangle {
     MouseArea {
         id: mouseArea
         anchors.fill: parent
-        onClicked: container.clicked()
+        onClicked: container.clicked(mouse)
+        onPressAndHold: container.pressAndHold(mouse)
+        onPressed: container.pressed(mouse)
+        onReleased: container.released(mouse)
         hoverEnabled: true
     }
 
