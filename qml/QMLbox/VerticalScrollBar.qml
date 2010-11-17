@@ -33,7 +33,7 @@ Item {
 
     Rectangle {
         id: barArea
-        color: "grey"
+        color: "lightgrey"
         width: parent.width
         height: parent.height - upArrow.height - downArrow.height
         anchors.centerIn: parent

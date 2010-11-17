@@ -12,7 +12,7 @@ Rectangle {
         height: 20
         anchors.horizontalCenter: parent.horizontalCenter
         text: "млваотмолт"
-        validator: IntValidator{}
+        validator: IntValidator {}
     }
 
     Button {
@@ -37,8 +37,9 @@ Rectangle {
 
     TableView {
         id: table
-        colHeight: 75
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.verticalCenter: parent.verticalCenter
+        model: 50
+        width: 300
+        height: 200
+        anchors.centerIn: parent
     }
 }

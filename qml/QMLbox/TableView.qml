@@ -1,45 +1,17 @@
-import Qt 4.7
+import QtQuick 1.0
 
-Item {
-    property alias colHeight: col.height
-    Rectangle {
+Rectangle {
+    property alias model: table.model
+    border.width: 1
+    ListView {
         id: table
-        color:  "black"
-        width: col.width + 2
-        height: col.height + 2
-        Column {
-            id: col
-            spacing: 1
-            anchors.centerIn: parent
-            clip: true
-            Row {
-                id: row
-                spacing: 1
-                Repeater {
-                    model: 3
-                    Rectangle {
-                        width: 100; height: 20
-                        color: "blue"
-                        Text {
-                            text: verticalScrollBar.position
-                        }
-                    }
-                }
-            }
-            Repeater {
-                model: 5
-                Row {
-                    spacing: 1
-                    Repeater {
-                        model: 3
-                        Rectangle {
-                            width: 100; height: 40
-                            color: "yellow"
-                        }
-                    }
-                }
-            }
-        }
+        width: parent.width - verticalScrollBar.width
+        height: parent.height
+        interactive: false
+        clip: true
+        contentY: verticalScrollBar.position * (contentHeight - table.height)
+        header: Row { Repeater { model: 5; delegate: Text { text: index } } }
+        delegate: Row { property variant rowIndex: index; Repeater { model: 5; delegate: Text { text: rowIndex } } }
     }
 
     VerticalScrollBar {
@@ -47,6 +19,6 @@ Item {
         height: table.height
         anchors.left: table.right
         anchors.verticalCenter: table.verticalCenter
-        filled: 0.5
+        filled: table.height / table.contentHeight
     }
 }
