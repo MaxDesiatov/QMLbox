@@ -12,7 +12,6 @@ int main(int argc, char *argv[])
     qmlRegisterType<WheelArea>("WheelArea", 0, 1, "WheelArea");
 
     QmlApplicationViewer viewer;
-    viewer.setOrientation(QmlApplicationViewer::Auto);
     viewer.setMainQmlFile(QLatin1String("qml/QMLbox/main.qml"));
     viewer.show();
 
