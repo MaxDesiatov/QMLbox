@@ -4,10 +4,11 @@ import WheelArea 0.1
 Item {
     id: scrollBar
     width: 20
-    property real position: 0
     property real filled: 1
     property real step: filled / 3
     property real bigStep: filled
+    property alias barY: bar.y
+    property variant maximumY: barMouseArea.drag.maximumY
 
     Button {
         id: upArrow
@@ -23,8 +24,8 @@ Item {
             interval: 100
             repeat: true
             onTriggered: {
-                var tmp = bar.y - barMouseArea.drag.maximumY * step
-                bar.y = tmp < barMouseArea.drag.minimumY ? barMouseArea.drag.minimumY : tmp
+                var tmp = bar.y - maximumY * step
+                bar.y = tmp < 0 ? 0 : tmp
             }
         }
         onPressed: timerUp.start()
@@ -50,8 +51,8 @@ Item {
                 interval: 100
                 repeat: true
                 onTriggered: {
-                    var tmp = bar.y - barMouseArea.drag.maximumY * bigStep
-                    bar.y = tmp < barMouseArea.drag.minimumY ? barMouseArea.drag.minimumY : tmp
+                    var tmp = bar.y - maximumY * bigStep
+                    bar.y = tmp < 0 ? 0 : tmp
                 }
             }
             onPressed: timerUpFree.start()
@@ -65,9 +66,9 @@ Item {
             anchors.horizontalCenter: parent.horizontalCenter
             text: ""
             y: 0
-            onYChanged: position = 1 - (barMouseArea.drag.maximumY - y) / barMouseArea.drag.maximumY
 
             Behavior on y { PropertyAnimation { duration: 100 } }
+            Behavior on height { PropertyAnimation { duration: 100 } }
 
             MouseArea {
                 id: barMouseArea
@@ -91,8 +92,8 @@ Item {
                 interval: 100
                 repeat: true
                 onTriggered: {
-                    var tmp = bar.y + barMouseArea.drag.maximumY * bigStep
-                    bar.y = tmp > barMouseArea.drag.maximumY ? barMouseArea.drag.maximumY : tmp
+                    var tmp = bar.y + maximumY * bigStep
+                    bar.y = tmp > maximumY ? maximumY : tmp
                 }
             }
             onPressed: timerDownFree.start()
@@ -115,8 +116,8 @@ Item {
             interval: 100
             repeat: true
             onTriggered: {
-                var tmp = bar.y + barMouseArea.drag.maximumY * step
-                bar.y = tmp > barMouseArea.drag.maximumY ? barMouseArea.drag.maximumY : tmp
+                var tmp = bar.y + maximumY * step
+                bar.y = tmp > maximumY ? maximumY : tmp
             }
         }
         onPressed: timerDown.start()
@@ -127,11 +128,11 @@ Item {
         id: wheel
         anchors.fill: parent
         onVerticalWheel: {
-            var tmp = bar.y - delta * step
-            if (tmp > barMouseArea.drag.maximumY)
-                bar.y = barMouseArea.drag.maximumY
-            else if (tmp < barMouseArea.drag.minimumY)
-                bar.y = barMouseArea.drag.minimumY
+            var tmp = bar.y - delta * bigStep
+            if (tmp > maximumY)
+                bar.y = maximumY
+            else if (tmp < 0)
+                bar.y = 0
             else
                 bar.y = tmp
         }

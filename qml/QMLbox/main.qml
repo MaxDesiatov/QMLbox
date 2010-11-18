@@ -13,33 +13,64 @@ Rectangle {
         anchors.horizontalCenter: parent.horizontalCenter
         text: "млваотмолт"
         validator: IntValidator {}
+
+    }
+
+    Component {
+        id: myDelegate
+        Rectangle {
+            id: rect
+            width: 100
+            states : [
+                State {
+                    name: "removed"
+                    PropertyChanges { target: rect; height: 0 }
+                },
+                State {
+                    name: "added"
+                    PropertyChanges { target: rect; height: 100 }
+                }
+            ]
+            Behavior on height { PropertyAnimation { duration: 100 } }
+        }
     }
 
     Button {
         anchors.verticalCenter: parent.verticalCenter
         anchors.left: parent.left
         text: txtEdit.text
+        onClicked: table.push(myDelegate, function(obj) {
+                                  obj.color = Qt.lighter("blue", 1 + table.count * 0.1)
+                              })
     }
 
     Rectangle {
         id: cursorRect
-        color: "red"
+        color: "yellow"
         width:  150
         height: 50
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.verticalCenter: parent.bottom
+        anchors.bottom: parent.bottom
+
+
         CursorArea {
             cursor: parseInt(txtEdit.text)
-            width: parent.width
-            height: parent.height
+            anchors.fill: parent
+        }
+        MouseArea {
+            onClicked: table.pop()
+            anchors.fill: parent
+        }
+        Text {
+            anchors.centerIn: parent
+            text: table.count
         }
     }
 
     TableView {
         id: table
-        model: 50
-        width: 300
-        height: 200
         anchors.centerIn: parent
+        width: 200
+        height: 250
     }
 }
