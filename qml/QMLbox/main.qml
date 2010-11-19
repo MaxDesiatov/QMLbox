@@ -1,5 +1,6 @@
 import QtQuick 1.0
 import CursorArea 0.1
+import PushButton 0.1
 
 Rectangle {
     id: rectangle1
@@ -10,10 +11,9 @@ Rectangle {
         id: txtEdit
         width: 100
         height: 20
+        anchors.top: parent.top
         anchors.horizontalCenter: parent.horizontalCenter
         text: "млваотмолт"
-        validator: IntValidator {}
-
     }
 
     Component {
@@ -42,6 +42,13 @@ Rectangle {
         onClicked: table.push(myDelegate, function(obj) {
                                   obj.color = Qt.lighter("blue", 1 + table.count * 0.1)
                               })
+    }
+
+    PushButton {
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.right: parent.right
+        text: "blah"
+        onClicked: text += "z"
     }
 
     Rectangle {

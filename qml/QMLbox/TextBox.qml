@@ -24,5 +24,10 @@ Rectangle {
         anchors.bottomMargin: bottomMargin
         anchors.topMargin: topMargin
         selectByMouse: true
+        Keys.onPressed: {
+            if (event.key == Qt.Key_Backspace ||
+                    event.key == Qt.Key_Delete ||
+                    event.text != "") console.log(text)
+        }
     }
 }

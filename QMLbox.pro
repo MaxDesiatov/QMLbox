@@ -16,13 +16,11 @@ symbian:TARGET.UID3 = 0xE5652314
 
 # Define QMLJSDEBUGGER to enable basic debugging (setting breakpoints etc)
 # Define QMLOBSERVER for advanced features (requires experimental QmlInspector plugin!)
-#DEFINES += QMLJSDEBUGGER
-#DEFINES += QMLOBSERVER
+DEFINES += QMLJSDEBUGGER
+DEFINES += QMLOBSERVER
 
 # The .cpp file which was generated for your project. Feel free to hack it.
-SOURCES += main.cpp \
-    CursorArea.cpp \
-    WheelArea.cpp
+SOURCES += main.cpp
 
 # Please do not modify the following two lines. Required for deployment.
 include(qmlapplicationviewer/qmlapplicationviewer.pri)
@@ -30,7 +28,8 @@ qtcAddDeployment()
 
 HEADERS += \
     CursorArea.h \
-    WheelArea.h
+    WheelArea.h \
+    PushButton.h
 
 OTHER_FILES += \
     README.txt

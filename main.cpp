@@ -1,8 +1,9 @@
 #include <QtGui/QApplication>
+#include <QDeclarativeContext>
 #include "qmlapplicationviewer.h"
 #include "CursorArea.h"
 #include "WheelArea.h"
-#include <QDeclarativeContext>
+#include "PushButton.h"
 
 int main(int argc, char *argv[])
 {
@@ -10,6 +11,7 @@ int main(int argc, char *argv[])
 
     qmlRegisterType<CursorArea>("CursorArea", 0, 1, "CursorArea");
     qmlRegisterType<WheelArea>("WheelArea", 0, 1, "WheelArea");
+    qmlRegisterType<WheelArea>("PushButton", 0, 1, "PushButton");
 
     QmlApplicationViewer viewer;
     viewer.setMainQmlFile(QLatin1String("qml/QMLbox/main.qml"));
