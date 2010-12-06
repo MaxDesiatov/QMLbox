@@ -1,6 +1,7 @@
 import QtQuick 1.0
 import CursorArea 0.1
 import PushButton 0.1
+import LineEdit 0.1
 
 Rectangle {
     id: rectangle1
@@ -47,8 +48,16 @@ Rectangle {
     PushButton {
         anchors.verticalCenter: parent.verticalCenter
         anchors.right: parent.right
-        text: "blah"
+        text: "blasdfvdsfvsdvfh"
         onClicked: text += "z"
+        width: text.length * 8
+    }
+
+
+    LineEdit {
+        anchors.top: parent.top
+        anchors.left: parent.left
+
     }
 
     Rectangle {

@@ -42,10 +42,8 @@
 #ifndef PUSHBUTTON_H
 #define PUSHBUTTON_H
 
-#include <QtDeclarative/qdeclarative.h>
-#include <QtGui/QGraphicsProxyWidget>
-#include <QtGui/QPushButton>
-#include <QDebug>
+#include <QPushButton>
+#include <QGraphicsProxyWidget>
 
 class PushButton : public QGraphicsProxyWidget
 {
